@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>San Valentín 💖</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#ff9ecb,#ff4da6);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+}
+
+.card{
+    background: rgba(255,255,255,0.15);
+    padding:50px;
+    border-radius:25px;
+    backdrop-filter: blur(12px);
+    box-shadow:0 0 25px rgba(0,0,0,0.25);
+    text-align:center;
+}
+
+h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+h2{
+    font-weight:normal;
+    margin-bottom:30px;
+}
+
+button{
+    border:none;
+    padding:15px 30px;
+    margin:10px;
+    border-radius:20px;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#si{
+    background:#00ffbf;
+    color:black;
+}
+
+#no{
+    background:#ff3b6b;
+    color:white;
+    position:relative;
+}
+
+.heart{
+    position:absolute;
+    font-size:20px;
+    animation: flotar 6s linear infinite;
+}
+
+@keyframes flotar{
+    0%{transform:translateY(0); opacity:1;}
+    100%{transform:translateY(-100vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Toni 💖</h1>
+    <h2>¿Querés ser mi San Valentín?</h2>
+
+    <button id="si" onclick="aceptar()">Sí 💕</button>
+    <button id="no" onclick="noClick()">No 😢</button>
+</div>
+
+<script>
+let tamaño = 20;
+
+function noClick(){
+    // Agranda el SI
+    tamaño += 12;
+    document.getElementById("si").style.fontSize = tamaño + "px";
+
+    // Mueve el NO
+    let btn = document.getElementById("no");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random()*80 + "%";
+    btn.style.top = Math.random()*80 + "%";
+}
+
+function aceptar(){
+    document.body.innerHTML = `
+    <div style="text-align:center">
+    <h1 style="font-size:55px">💖 Sabía que ibas a decir que sí 💖</h1>
+    <h2>Ahora oficialmente sos mi San Valentín 😌💕</h2>
+    </div>
+    `;
+}
+
+// Corazones flotando
+setInterval(()=>{
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.bottom = "-20px";
+    heart.style.fontSize = (Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=> heart.remove(),6000);
+},500);
+</script>
+
+</body>
